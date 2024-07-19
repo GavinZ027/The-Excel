@@ -12,8 +12,9 @@ folder_path = 'text/doc'  # 请替换为你的文件夹路径
 if not folder_path.endswith('/'):
     folder_path += '/'
 
-# 获取文件夹中的所有文件
-all_files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+# 获取文件夹中的所有非隐藏文件
+all_files = [f for f in os.listdir(folder_path) 
+             if os.path.isfile(os.path.join(folder_path, f)) and not f.startswith('.')]
 
 # 确保文件按照顺序排序
 all_files.sort()
@@ -22,7 +23,7 @@ all_files.sort()
 for index, row in df.iterrows():
     if index < len(all_files):
         old_name = all_files[index]
-        new_name = f"{index + 1}_{row['名字']}"  # 添加序号和新文件名
+        new_name = f"{index + 1}_{row['newname']}"  # 添加序号和新文件名
 
         # 获取文件扩展名
         file_extension = os.path.splitext(old_name)[1]
