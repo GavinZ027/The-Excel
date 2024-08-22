@@ -5,7 +5,7 @@ import re
 # 用途：读取Excel，根据表格内容顺序，对目标文件进行重新命名及编号
 
 # Step 1: 读取Excel文件，识别文字
-file_path = ' example.xlsx'  # 请替换为你的Excel文件路径
+file_path = 'example.xlsx'  # 请替换为你的Excel文件路径
 df = pd.read_excel(file_path, sheet_name='Sheet1')
 
 # Step 2: 重命名文件并添加序号
@@ -30,7 +30,7 @@ all_files.sort(key=natural_sort_key)
 for index, row in df.iterrows():
     if index < len(all_files):
         old_name = all_files[index]
-        new_name = f"{index + 1}_{row['姓名']}"  # 添加序号和新文件名
+        new_name = f"{index + 1}_{row['name']}"  # 添加序号和新文件名
 
         # 获取文件扩展名
         file_extension = os.path.splitext(old_name)[1]
